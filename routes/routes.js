@@ -8,6 +8,12 @@ router.get("/", (req, res) => {
     .catch((err) => console.log(err));
 });
 
+router.get("/:id", (req, res) => {
+  Todos.find({ _id: req.params.id })
+    .then((docs) => res.json(docs))
+    .catch((err) => console.log(err));
+});
+
 router.post("/", (req, res) => {
   const newData = new Todos(req.body);
   newData
