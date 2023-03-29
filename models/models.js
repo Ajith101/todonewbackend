@@ -5,6 +5,7 @@ const TodosScheema = new mongoose.Schema({
   like: Boolean,
   time: String,
   edited: { type: String, default: null },
+  editedList: [{ type: String, default: null }],
 });
 
 const Todos = mongoose.model("todo", TodosScheema);

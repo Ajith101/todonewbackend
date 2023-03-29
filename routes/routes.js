@@ -8,6 +8,21 @@ router.get("/", (req, res) => {
     .catch((err) => console.log(err));
 });
 
+router.patch("/:id", (req, res) => {
+  const { editedList } = req.body;
+
+  Todos.updateOne(
+    { _id: req.params.id },
+    {
+      $push: {
+        editedList: editedList,
+      },
+    }
+  )
+    .then((docs) => res.json(docs))
+    .catch((err) => console.log(err));
+});
+
 router.get("/:id", (req, res) => {
   Todos.find({ _id: req.params.id })
     .then((docs) => res.json(docs))
